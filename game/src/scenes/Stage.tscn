@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/sprites/texture.png" type="Texture" id=1]
+[ext_resource path="res://src/scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/scripts/Stage.gd" type="Script" id=3]
+
+[node name="Stage" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="Background" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="SprBackground" type="TextureRect" parent="CanvasLayer/Background"]
+anchor_right = 1.0
+anchor_bottom = 1.02222
+margin_right = 6080.0
+margin_bottom = 3496.0
+rect_scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="CanvasLayer/UI"]
+anchor_left = 0.05
+anchor_top = 0.0888889
+anchor_right = 0.209375
+anchor_bottom = 0.166667
+margin_right = -27.0
+margin_bottom = -16.0
+text = "Score: 0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Ready" type="Label" parent="CanvasLayer/UI"]
+visible = false
+anchor_left = 0.164063
+anchor_top = 0.413889
+anchor_right = 0.835938
+anchor_bottom = 0.586111
+text = "GAME OVER
+- press the enter key to retry -"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 30.7244, 97.4706 )
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="destroyed" from="Player" to="." method="_on_player_destroyed"]
