@@ -13,15 +13,12 @@ func _ready() -> void:
 	screen_width = get_viewport_rect().size.x
 	screen_height = get_viewport_rect().size.y
 
-func _input(event: InputEvent) -> void:
-	if event is InputEvent:
-		if event.is_action_pressed("ui_quit"):
-			get_tree().quit()
-		if is_game_over and event.is_action("ui_enter"):
-			get_tree().change_scene("res://src/scenes/Stage.tscn")
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("ui_enter") and is_game_over:
+		get_tree().reload_current_scene()
 
 func _on_player_destroyed() -> void:
-	get_node("CanvasLayer/UI/Ready").show()
+	$CanvasLayer/UI/Ready.visible = true
 	is_game_over = true
 
 func _on_spawn_timer_timeout() -> void:

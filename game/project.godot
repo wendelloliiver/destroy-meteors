@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Space Shooter"
+config/name="Destroy Meteors"
 run/main_scene="res://src/scenes/Stage.tscn"
 config/icon="res://icon.png"
 
