@@ -61,4 +61,6 @@ func _on_reload_timeout() -> void:
 
 func _on_player_area_entered(area: Area2D) -> void:
 	if area.is_in_group("asteroid"):
-		queue_free()
+		get_tree().reload_current_scene()
+		Global.score = 0
+		# queue_free()

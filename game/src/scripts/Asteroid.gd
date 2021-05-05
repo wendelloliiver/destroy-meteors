@@ -38,3 +38,5 @@ func _on_asteroid_area_entered(area: Area2D) -> void:
 			
 			explosion_instance.position = position
 			stage_node.add_child(explosion_instance)
+			
+			Global.score += 1

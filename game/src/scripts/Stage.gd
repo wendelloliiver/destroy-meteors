@@ -7,8 +7,6 @@ var asteroid = preload("res://src/scenes/Asteroid.tscn")
 var screen_width
 var screen_height
 
-var score = 0
-
 func _ready() -> void:
 	screen_width = get_viewport_rect().size.x
 	screen_height = get_viewport_rect().size.y
@@ -16,6 +14,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("ui_enter") and is_game_over:
 		get_tree().reload_current_scene()
+	
+	_on_player_score()
 
 func _on_player_destroyed() -> void:
 	$CanvasLayer/UI/Ready.visible = true
@@ -27,5 +27,4 @@ func _on_spawn_timer_timeout() -> void:
 	add_child(asteroid_instance)
 
 func _on_player_score() -> void:
-	score += 1
-	$CanvasLayer/UI/Score.text = "Score: " + str(score)
+	$CanvasLayer/UI/Score.text = "Score: " + str(Global.score)

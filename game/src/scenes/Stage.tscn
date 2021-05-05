@@ -73,5 +73,6 @@ __meta__ = {
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 30.7244, 97.4706 )
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="destroyed" from="Player" to="." method="_on_player_destroyed"]
